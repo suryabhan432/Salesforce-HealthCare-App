@@ -1,0 +1,59 @@
+<template>
+    <lightning-card title="Appointment Details">
+
+<!-- for input and sort button -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col slds-size_2-of-3">
+                <lightning-input
+                label="Filter by Location"  
+                value={inVale}
+                onchange={inputHandler}>
+
+            </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3" style="margin-top: 24px;">
+            <lightning-button label={bulabel} variant="success" value={filVale} onclick={sortHandler}></lightning-button>
+           </div> 
+            </div>
+
+
+        <!-- Show all appointment  start here-->
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                        <div class="slds-truncate" title="Opportunity Name">Appointment Id</div>
+                        </th>
+                        <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Appointment Date</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Account Name">Location</div>
+                            </th>
+                        <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">Patient Name</div>
+                        </th>
+                        <th class="" scope="col">
+                        <div class="slds-truncate" title="Stage">Patient Age</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={appoints} for:item="ap">
+                        <tr class="slds-hint-parent" key={ap.id}>
+                            <td>{ap.Id}</td>
+                            <td>{ap.Appointment_Date__c}</td>
+                            <td>{ap.Location__c}</td>
+                            <td>{ap.Patient__r.Name}</td>
+                            <td>{ap.Patient__r.Age__c}</td>
+                        </tr>
+                    </template>
+                </tbody>
+                </table>
+       
+
+        <!-- Show all appointment  end here-->
+
+    </lightning-card>
+    
+</template>
